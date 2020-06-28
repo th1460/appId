@@ -66,12 +66,13 @@ ui <- dashboardPage(
 
 server <- function(input, output, session) {
 
-  # If you need get user info in app
+  # If you want get user info in app
   userinfo <- callModule(get_user_info, "userinfo")
   output$user <- renderText({userinfo()})
 
 }
 
+# Modified shinyApp
 shinyAppId(ui, server)
 
 ```
