@@ -1,0 +1,7 @@
+exportPattern("^[[:alpha:]]+")
+import(shiny)
+import(httr)
+import(magrittr)
+import(yaml)
+importFrom(glue,glue)
+importFrom(jsonlite,fromJSON)

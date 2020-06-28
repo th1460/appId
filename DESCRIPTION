@@ -1,0 +1,21 @@
+Package: appId
+Title: Connect with App Id service from IBM
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Thiago",
+           family = "Pires",
+           role = c("aut", "cre"),
+           email = "thop100@hotmail.com")
+Description: Connect with App Id service from IBM.
+License:MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+  shiny,
+  httr,
+  magrittr,
+  yaml,
+  glue,
+  jsonlite
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
