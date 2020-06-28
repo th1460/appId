@@ -23,7 +23,7 @@ remotes::install_github("th1460/appId")
 
 ```
 
-## Configurate
+## Configure
 
 In the first, you need generate a config yaml file with:
 
