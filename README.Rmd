@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 [![R build status](https://github.com/th1460/appId/workflows/R-CMD-check/badge.svg)](https://github.com/th1460/appId/actions)
 <!-- badges: end -->
 
-`AppID` is package to get authentication with [App ID IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
+`appID` is package to get authentication with [App ID IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
 
 ## Install
 
