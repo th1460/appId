@@ -1,5 +1,5 @@
-appId
-================
+
+# appId <img src='man/figures/hexsticker.png' align="right" height="139" />
 
 <!-- badges: start -->
 
