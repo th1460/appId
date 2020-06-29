@@ -9,7 +9,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://github.com/th1460/appId/workflows/R-CMD-check/badge.svg)](https://github.com/th1460/appId/actions)
 <!-- badges: end -->
 
-`AppID` is package to get authentication with [App ID
+The `appId` is package to get authentication with [App ID
 IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
 
 ## Install
@@ -18,7 +18,7 @@ IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
 remotes::install_github("th1460/appId")
 ```
 
-## Configurate
+## Configure
 
 In the first, you need generate a config yaml file with:
 
@@ -28,6 +28,8 @@ gen_appid_config(name = "Myapp")
 
 And resulting
 
+    # appid_config.yml
+    
     name: Myapp
     config:
       key: !expr Sys.getenv("APPID_KEY")
@@ -40,7 +42,7 @@ And resulting
 
 You should too, create a `.Renviron` file with the credentials.
 
-## Example in shiny app
+## Example
 
 ``` r
 require(shiny)
@@ -48,18 +50,26 @@ require(shinydashboard)
 require(appId)
 
 ui <- dashboardPage(
-  dashboardHeader(user_info(), title = "My dashboard"),
+  dashboardHeader(user_info(), # To show user info
+                  title = "My dashboard"),
   dashboardSidebar(),
   dashboardBody()
 )
 
 server <- function(input, output, session) {
 
-  # If you need get user info in app
+  # If you want get user info in app
   userinfo <- callModule(get_user_info, "userinfo")
   output$user <- renderText({userinfo()})
 
 }
 
+# Modified shinyApp
 shinyAppId(ui, server)
 ```
+
+## References
+
+1.  Package [curso-r/auth0](https://github.com/curso-r/auth0)
+2.  Gist
+    [hadley/shiny-oauth.r](https://gist.github.com/hadley/144c406871768d0cbe66b0b810160528)

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 [![R build status](https://github.com/th1460/appId/workflows/R-CMD-check/badge.svg)](https://github.com/th1460/appId/actions)
 <!-- badges: end -->
 
-`appID` is package to get authentication with [App ID IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
+The `appId` is package to get authentication with [App ID IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
 
 ## Install
 
@@ -36,6 +36,8 @@ gen_appid_config(name = "Myapp")
 And resulting
 
 ```
+# appid_config.yml
+
 name: Myapp
 config:
   key: !expr Sys.getenv("APPID_KEY")
@@ -50,7 +52,7 @@ config:
 
 You should too, create a `.Renviron` file with the credentials.
 
-## Example in shiny app
+## Example
 
 ```{r eval=FALSE}
 
@@ -59,7 +61,8 @@ require(shinydashboard)
 require(appId)
 
 ui <- dashboardPage(
-  dashboardHeader(user_info(), title = "My dashboard"),
+  dashboardHeader(user_info(), # To show user info
+                  title = "My dashboard"),
   dashboardSidebar(),
   dashboardBody()
 )
@@ -77,3 +80,7 @@ shinyAppId(ui, server)
 
 ```
 
+## References
+
+1. Package [curso-r/auth0](https://github.com/curso-r/auth0)
+2. Gist [hadley/shiny-oauth.r](https://gist.github.com/hadley/144c406871768d0cbe66b0b810160528)
