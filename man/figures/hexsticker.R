@@ -5,7 +5,7 @@ library(magrittr)
 # generate sticker --------------------------------------------------------
 
 logo <-
-  image_read("appid.png") %>%
+  image_read("man/figures/appid.png") %>%
   image_crop("200x140+0")
 
 sticker(logo,

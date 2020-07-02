@@ -4,6 +4,9 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+source("man/figures/hexsticker.R")
+
 ```
 
 # appId <img src='man/figures/hexsticker.png' align="right" height="139" />
