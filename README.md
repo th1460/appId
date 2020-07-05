@@ -9,7 +9,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://github.com/th1460/appId/workflows/R-CMD-check/badge.svg)](https://github.com/th1460/appId/actions)
 <!-- badges: end -->
 
-The `appId` is package to get authentication with [App ID
+The `appId` is a package to get authentication with [App ID
 IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
 
 ## Install
@@ -39,6 +39,7 @@ And resulting
       authorize: authorization
       access: token
       scope: openid
+      password: !expr Sys.getenv("SECRET") # encrypt token
 
 You should too, create a `.Renviron` file with the credentials.
 
@@ -50,7 +51,7 @@ require(shinydashboard)
 require(appId)
 
 ui <- dashboardPage(
-  dashboardHeader(user_info(), # To show user info
+  dashboardHeader(user_info(), # show user info
                   title = "My dashboard"),
   dashboardSidebar(),
   dashboardBody()
@@ -58,13 +59,13 @@ ui <- dashboardPage(
 
 server <- function(input, output, session) {
 
-  # If you want get user info in app
+  # if you want get user info in app
   userinfo <- callModule(get_user_info, "userinfo")
   output$user <- renderText({userinfo()})
 
 }
 
-# Modified shinyApp
+# modified shinyApp
 shinyAppId(ui, server)
 ```
 
