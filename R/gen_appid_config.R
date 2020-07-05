@@ -13,12 +13,15 @@ gen_appid_config <- function(name = NULL) {
                                  base_url = 'Sys.getenv("APPID_URL")',
                                  authorize = 'authorization',
                                  access = 'token',
-                                 scope = 'openid'))
+                                 scope = 'openid',
+                                 password = 'Sys.getenv("SECRET")'
+                                 ))
 
   attr(list_obj$config$key, "tag") <- "!expr"
   attr(list_obj$config$secret, "tag") <- "!expr"
   attr(list_obj$config$redirect_uri, "tag") <- "!expr"
   attr(list_obj$config$base_url, "tag") <- "!expr"
+  attr(list_obj$config$password, "tag") <- "!expr"
 
   cat(list_obj %>% as.yaml(), file = "appid_config.yml")
 

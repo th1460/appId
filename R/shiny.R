@@ -25,10 +25,13 @@ oauth_config <- function(file) {
 
   base_url <- appid$config$base_url
 
+  password <- appid$config$password
+
   return(list(app = app,
               api = api,
               scope = scope,
-              base_url = base_url)
+              base_url = base_url,
+              password = password)
   )
 
 }
@@ -91,18 +94,22 @@ get_user_info <- function(input, output, session) {
 
   # get a token and get user info
 
+  password <- charToRaw(oauth_setup$password)
+
+  key <- sha256(password)
+
   if (!file.exists("/tmp/code.RDS")) {
 
     code <- params$code
-    saveRDS(code, "/tmp/code.RDS")
+    saveRDS(aes_cbc_encrypt(serialize(code, NULL), key = key), "/tmp/code.RDS")
 
   } else {
 
-    code <- readRDS("/tmp/code.RDS")
+    code <- unserialize(aes_cbc_decrypt(readRDS("/tmp/code.RDS"), key = key))
 
     if (length(code) > 5) {code %<>% .[(length(.) - 3):length(.)]}
     code %<>% append(params$code)
-    saveRDS(code, "/tmp/code.RDS")
+    saveRDS(aes_cbc_encrypt(serialize(code, NULL), key = key), "/tmp/code.RDS")
 
   }
 
@@ -115,7 +122,7 @@ get_user_info <- function(input, output, session) {
       params$code
     )
 
-    saveRDS(access_token, "/tmp/token.RDS")
+    saveRDS(aes_cbc_encrypt(serialize(access_token, NULL), key = key), "/tmp/token.RDS")
 
     token <- oauth2.0_token(
       app = oauth_setup$app,
@@ -129,7 +136,7 @@ get_user_info <- function(input, output, session) {
     token <- oauth2.0_token(
       app = oauth_setup$app,
       endpoint = oauth_setup$api,
-      credentials = readRDS("/tmp/token.RDS"),
+      credentials = unserialize(aes_cbc_decrypt(readRDS("/tmp/token.RDS"), key = key)),
       cache = TRUE
     )
 
