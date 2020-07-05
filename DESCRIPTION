@@ -16,6 +16,7 @@ Imports:
   magrittr,
   yaml,
   glue,
-  jsonlite
+  jsonlite,
+  openssl
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
