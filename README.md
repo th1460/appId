@@ -9,6 +9,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://github.com/th1460/appId/workflows/R-CMD-check/badge.svg)](https://github.com/th1460/appId/actions)
 <!-- badges: end -->
 
+THIS REPOSITORY HAS BEEN ARCHIVED, BUT A NEW ONE IS HERE: https://github.com/IBM/AppIdR
+
 The `appId` is a package to get authentication with [App ID
 IBM](https://www.ibm.com/cloud/app-id) service in the Shiny Apps.
 
